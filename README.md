@@ -1,8 +1,8 @@
 # Security Header Auditor
 
-Check whether a website returns common HTTP security headers.
+Security Header Auditor checks common HTTP security headers for websites you own or are explicitly authorized to assess.
 
-This is a defensive learning project for basic web security hygiene. Only run it against websites you own or have permission to assess.
+It is a defensive learning tool for web security hygiene, not a vulnerability scanner.
 
 ## Headers Checked
 
@@ -13,18 +13,43 @@ This is a defensive learning project for basic web security hygiene. Only run it
 - Referrer-Policy
 - Permissions-Policy
 
+## Features
+
+- Validates URL input before making requests.
+- Uses a HEAD request first to reduce unnecessary response body transfer.
+- Falls back safely when servers return headers with HTTP error responses.
+- Scores strong, review, weak, and missing header states.
+- Provides a recommendation for every checked header.
+- Uses only the Python standard library.
+
 ## Usage
 
 ```bash
-python security_header_auditor.py https://example.com
+python security_header_auditor.py https://example.com --pretty
+```
+
+## Example Finding
+
+```json
+{
+  "header": "x-content-type-options",
+  "present": true,
+  "recommendation": "Set to nosniff.",
+  "status": "present",
+  "value": "nosniff"
+}
 ```
 
 ## Run Tests
 
 ```bash
-python -m unittest test_security_header_auditor.py
+python -m unittest -v
 ```
 
-## Safety Note
+## Continuous Integration
 
-This tool performs a simple HTTP GET request. It is not a vulnerability scanner and should not be used against systems without authorization.
+The repository includes a GitHub Actions workflow that runs the test suite on every push and pull request.
+
+## Safety
+
+Only run this tool against systems you own or have explicit permission to test. Do not use it as a broad internet scanner.
