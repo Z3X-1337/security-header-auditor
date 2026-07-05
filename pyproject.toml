@@ -1,0 +1,9 @@
+[project]
+name = "security-header-auditor"
+version = "1.0.0"
+description = "Defensive HTTP security header auditor for authorized websites."
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.pytest.ini_options]
+python_files = ["test_*.py"]
