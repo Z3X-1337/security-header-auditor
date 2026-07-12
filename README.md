@@ -1,5 +1,10 @@
 # Security Header Auditor
 
+[![tests](https://github.com/Z3X-1337/security-header-auditor/actions/workflows/tests.yml/badge.svg)](https://github.com/Z3X-1337/security-header-auditor/actions/workflows/tests.yml)
+![Python](https://img.shields.io/badge/Python-3.10--3.12-blue)
+![Version](https://img.shields.io/badge/version-0.1.0-informational)
+![License](https://img.shields.io/badge/license-MIT-green)
+
 Security Header Auditor is a deterministic Python command-line utility for reviewing selected HTTP response security headers on websites you own or are explicitly authorized to assess.
 
 It is intended for web-security hygiene checks, CI quality gates, and defensive learning. It is not a vulnerability scanner and does not prove that an application is secure.
@@ -25,11 +30,37 @@ It is intended for web-security hygiene checks, CI quality gates, and defensive 
 - Supports a CI threshold through `--fail-under`.
 - Uses only the Python standard library.
 
+## Installation
+
+Install from a local clone:
+
+```bash
+python -m pip install .
+```
+
+For an isolated CLI installation:
+
+```bash
+pipx install .
+```
+
+The installed command is:
+
+```bash
+security-header-auditor --help
+```
+
 ## Usage
 
 ```bash
+security-header-auditor https://example.com --pretty
+security-header-auditor https://example.com --fail-under 70 --pretty
+```
+
+The source-file form remains supported:
+
+```bash
 python security_header_auditor.py https://example.com --pretty
-python security_header_auditor.py https://example.com --fail-under 70 --pretty
 ```
 
 ## Exit Codes
@@ -63,17 +94,21 @@ The CSP review is intentionally conservative. It checks for:
 
 This is not a full browser-policy parser. A policy must still be reviewed against the application's actual resource requirements.
 
-## Run Tests
+## Validation
 
 ```bash
 python -m unittest -v
 ```
 
-The test suite covers policy scoring, CSP parsing, redirect recording, `HEAD`-to-`GET` fallback behavior, input validation, JSON serialization, CLI behavior, and CI exit-code thresholds.
+The suite contains 16 unit, CLI, and local integration tests. GitHub Actions tests Python 3.10, 3.11, and 3.12, installs the package, and verifies the CLI entry point.
 
-## Continuous Integration
+## Project Governance
 
-GitHub Actions runs the complete test suite on Python 3.10, 3.11, and 3.12 for every push and pull request.
+- [Changelog](CHANGELOG.md)
+- [Roadmap](ROADMAP.md)
+- [MIT License](LICENSE)
+
+The current package version is `0.1.0` and follows Semantic Versioning.
 
 ## Safety and Limitations
 
