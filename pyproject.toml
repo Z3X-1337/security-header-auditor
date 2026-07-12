@@ -1,9 +1,42 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
 [project]
-name = "security-header-auditor"
-version = "1.0.0"
-description = "Defensive HTTP security header auditor for authorized websites."
+name = "z3x-security-header-auditor"
+version = "0.1.0"
+description = "Deterministic HTTP security-header review and CI quality gates for authorized targets."
+readme = "README.md"
 requires-python = ">=3.10"
-dependencies = []
+license = { file = "LICENSE" }
+authors = [
+  { name = "Zaid Hijazi" }
+]
+keywords = ["cybersecurity", "http", "security-headers", "csp", "web-security", "ci"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Information Technology",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Security",
+]
+
+[project.urls]
+Homepage = "https://github.com/Z3X-1337/security-header-auditor"
+Repository = "https://github.com/Z3X-1337/security-header-auditor"
+Issues = "https://github.com/Z3X-1337/security-header-auditor/issues"
+Changelog = "https://github.com/Z3X-1337/security-header-auditor/blob/main/CHANGELOG.md"
+
+[project.scripts]
+security-header-auditor = "security_header_auditor:main"
+
+[tool.setuptools]
+py-modules = ["security_header_auditor"]
 
 [tool.pytest.ini_options]
 python_files = ["test_*.py"]
